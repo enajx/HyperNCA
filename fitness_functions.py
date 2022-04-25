@@ -268,10 +268,11 @@ def evaluate(argv):
     # parser.add_argument('--id', type=str, default='1646940683', metavar='', help='Run id')   # lander single seed
     # parser.add_argument('--id', type=str, default='1645360631', metavar='', help='Run id')   # ant 3 layers
     # parser.add_argument('--id', type=str, default='1645605120', metavar='', help='Run id')   # ant 30 layers deep one
-    parser.add_argument('--id', type=str, default='1647084085', metavar='', help='Run id')   # ant single seed
+    # parser.add_argument('--id', type=str, default='1647084085', metavar='', help='Run id')   # ant single seed
+    parser.add_argument('--id', type=str, default='1644785913', metavar='', help='Run id')    # metamorphosis quadrupeds
     
     parser.add_argument('--render', type=bool, default=1)
-    parser.add_argument('--visualise_weigths', type=bool, default=1) 
+    parser.add_argument('--visualise_weigths', type=bool, default=0) 
     parser.add_argument('--visualise_network', type=bool, default=0)
     parser.add_argument('--mean_solution', type=bool, default=1,  help='Whether to use the best population mean, else it will use best individual solution')
     parser.add_argument('--evaluation_runs', type=int, default=1,  help='Number of runs to evaluate model')
@@ -302,7 +303,7 @@ def evaluate(argv):
     evals = []
     runs = args.evaluation_runs
     for _ in range(runs):
-        evals.append(-1*fitnessRL(evolved_parameters=evolved_parameters, nca_config=nca_config,  render=args.render, visualise_weights=args.visualise_weigths, visualise_network=args.visualise_network))
+        evals.append(-1*fitnessRL(evolved_parameters=evolved_parameters, nca_config=nca_config, render=args.render, visualise_weights=args.visualise_weigths, visualise_network=args.visualise_network))
     evals = np.array(evals)
     print(f'mean reward {np.mean(evals)}. Var: {np.std(evals)}. Shape {evals.shape}')
 

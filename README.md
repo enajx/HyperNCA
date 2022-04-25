@@ -3,13 +3,13 @@
 
 <div align="center">    
  
-# Meta-Learning through Hebbian Plasticity in Random Networks   
+# HyperNCA: Growing Developmental Networks with Neural Cellular Automata
 
 [![Paper](https://img.shields.io/badge/paper-arxiv.?????-B31B1B.svg)](https://arxiv.org/abs/??????)
 
 </div>
  
-This reposistory contains the code to grow networks using our HyperNCA method on any [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [Meta-Learning through Hebbian Plasticity in Random Networks, 2020](https://arxiv.org/abs/??????).
+This reposistory contains the code to grow networks using our HyperNCA method on any [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [HyperNCA: Growing Developmental Networks  with Neural Cellular Automata, 2022](https://arxiv.org/abs/??????).
 Additionally, you can train any custom environment by [registering them.](https://github.com/openai/gym/wiki/Environments)
 <!-- 
 <p align="center">
@@ -32,7 +32,7 @@ pip install -r requirements.txt
  Next, use `train_NCA.py` to train an agent. You can train any state-vector based OpenAI Gym's or pyBullet environments:
  ```bash
 
-# train Hebbian network to solve the racing car
+# train HyperNCA to solve the Lunar Lander:
 python train_NCA.py --environment LunarLander-v2
 
 ```
@@ -95,7 +95,6 @@ Use `python fitness_functions.py --id <run_id>` to evaluate reported models:
 | 1647084085    | Quadruped     | Single 4 layers |
 | 1645360631    | Quadruped     | Random 3 layers |
 | 1645605120    | Quadruped     | Random 30 layers |
-| 1644785913    | Metamorphosis quadrupeds | Random 3 layers |
 
 
 If you want to train the model, you can find the specific parameters on use to train the models o each of the model configuration `.yml` files in `saved_models`. 
@@ -103,7 +102,7 @@ If you want to train the model, you can find the specific parameters on use to t
 
 ## Methamorphosis neural networks
 
-To train the *Methamorphosis neural networks*, use 
+To code to train the *Methamorphosis neural networks*, can be found in the *metamorphosis* branch of this repository. The NCA implementations are identical to the one used in this branch, the only code difference is the logic flow to make use of the morphing weights into the RL agent. The id of the reported metamorphosis model is 1644785913 and be evaluated in the metamorphosis branch with `python fitness_functions.py --id 1644785913`
 
 ![](images/metamorphosis.png)
 
