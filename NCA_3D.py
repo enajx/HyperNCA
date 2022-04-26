@@ -2,13 +2,11 @@ import torch
 import copy
 import numpy as np
 import torch.nn.functional as F
-from torch import nn
 from matplotlib import pyplot
 import time
 
 from visualisation_utils import visualiseVoxs2Dmulti, visualiseNetwork
 
-torch.set_default_dtype(torch.float64)
 
 def merge_dicts_helper(dict1, dict2):
     """ Recursively merges dict2 into dict1 """
@@ -70,12 +68,14 @@ class SmallerCellUpdateNet(torch.nn.Module):
 class CellPerceptionNet(torch.nn.Module):           
     """
     Defines what each cell perceives of the environment surrounding it
+    In original Mordvintsev NCA, CNN parameters weren't learnt but Sobel filters were used, here we learned the CNN parameters.
     """
     def __init__(self, in_channels, bias):
         super(CellPerceptionNet, self).__init__()
         self.num_channels = in_channels            
         self.bias = bias            
         self.conv1 = torch.nn.Conv3d(in_channels=self.num_channels, out_channels=self.num_channels*3, kernel_size=3, stride=1, padding=1, groups=self.num_channels, bias=self.bias)
+        # self.conv1 = torch.nn.Conv3d(in_channels=self.num_channels, out_channels=self.num_channels*3, kernel_size=3, stride=1, padding=1, padding_mode='circular', groups=self.num_channels, bias=self.bias)
 
     def forward(self, x):
         return self.conv1(x)
@@ -111,11 +111,9 @@ class CellCAModel3D(TorchModule):
         self.tanh = torch.nn.Tanh()
 
             
-
     def alive(self, x):  # return maxpool over the alive channel (1,1,:,:), used to zero-out cells who have no surrounding cell with alive channel above alive thereshold
         return F.max_pool3d(x[:, self.living_channel_dim, :, :, :], kernel_size=3, stride=1, padding=1)
     
-
     def perceive(self, x):
         return self.perception_net(x)
 
@@ -155,7 +153,7 @@ class CellCAModel3D(TorchModule):
         post_life_mask = self.alive(x) > alive_thresdhold
         
         life_mask = (pre_life_mask & post_life_mask) 
-        x = x * life_mask   
+        x = x * life_mask   # Zero-out cells who have no surrounding cell with alive channel above alive thereshold
         
         if self.debugging:
             print(f"\npre_life_mask {torch.sum(pre_life_mask)}")
@@ -164,14 +162,14 @@ class CellCAModel3D(TorchModule):
         
         return x, life_mask
 
-    def forward(self, x, steps, reading_channel, policy_layers, run_pca=False, visualise_weights=False, visualise_network=False, inOutdim=None):
+    def forward(self, x, steps, reading_channel, run_pca=False, visualise_weights=False, visualise_network=False, inOutdim=None):
         if visualise_weights:
             from celluloid import Camera
-            fig2, ax2 = pyplot.subplots(policy_layers)
+            fig2, ax2 = pyplot.subplots(3)
             camera_layers = Camera(fig2)
             
             # Delta
-            # fig3, ax3 = pyplot.subplots(policy_layers)
+            # fig3, ax3 = pyplot.subplots(3)
             # camera_layers_delta = Camera(fig3)
             
         elif visualise_network:
@@ -182,16 +180,22 @@ class CellCAModel3D(TorchModule):
         weights_for_pca = [] if run_pca else None
         for step in range(steps):
             if visualise_network:   # Only generate network visualation at a time
+                x_ = x.clone()
+                x_[:,:,-1,inOutdim[1]:,:] = 0.0 
                 cameraNetwork = visualiseNetwork(x[0][reading_channel], inOutdim, cameraNetwork, animated=True)
             elif visualise_weights:  # Only generate voxel visualation at a time
                 x_ = x.clone()
-                camera_layers = visualiseVoxs2Dmulti(x, camera_layers, fig2, ax2, step, None)
+                x_[:,:,-1,inOutdim[1]:,:] = 0.0 
+                # cameraVoxels = visualiseVoxs(np.abs(x[0][reading_channel].numpy())/(10*np.max(np.abs(x[0][reading_channel].numpy()))), cameraVoxels, ax2)
+                camera_layers = visualiseVoxs2Dmulti(x_, camera_layers, fig2, ax2, step, None)
             
             x, life_mask = self.update(x)
             x[:,:,-1,inOutdim[1]:,:] = 0.0 
             
             if run_pca:
-                weights_for_pca.append(x[0][reading_channel].flatten().detach().numpy())
+                x_ = x.clone()
+                x_[:,:,-1,inOutdim[1]:,:] = 0.0 
+                weights_for_pca.append(x_[0][reading_channel].flatten().detach().numpy())
                 
             # # Delta
             # if visualise_weights:

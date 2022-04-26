@@ -1,0 +1,44 @@
+NCA_MLP: false
+NCA_MLP_bias: true
+NCA_MLP_hidden: 8
+NCA_MLP_nb_layers: 3
+NCA_bias: true
+NCA_channels: 8
+NCA_dimension: 3
+NCA_steps: 20
+RANDOM_SEED: 12865
+alpha_living_threshold: -.inf
+batch_size: 1
+bits_per_seed: 1
+co_evolve_seed: false
+date: 2022-02-11
+debugging: 0
+environment:
+- AntBulletSmallEnv-v0
+- AntBulletEnv-v0
+- AntBulletBigEnv-v0
+generations: 20000
+id: '1644553332'
+living_channel_dim: 1
+metamorphosis_NCA_steps: 10
+nb_envs: 3
+neighborhood: Moore
+normalise: true
+penalty_off_topology: false
+plastic: false
+policies_size:
+- 1792
+policy_layers: 3
+popsize: 64
+random_seed: false
+random_seed_env: false
+reading_channel: 0
+replace: false
+reward_type: min
+seed_size: 6272
+seed_type: randomU2
+seeds_size:
+- 1
+size_substrate: 28
+training time: 68936 seconds
+update_net_channel_dims: 16

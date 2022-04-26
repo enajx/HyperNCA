@@ -25,6 +25,4 @@ outcmaes/
 test.py
 experiments/
 *.mp4
-saved_models_old/
-saved_models_metamorphosis/
-saved_models_main/
+saved_models/
