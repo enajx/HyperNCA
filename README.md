@@ -92,7 +92,7 @@ Once trained, use `fitness_functions.py --id <run_id>` to test the grown network
  ```
 
 python fitness_functions.py --id 1644785913
-
+ ```
 
 If you want to train the model, you can find the specific parameters on use to train the models o each of the model configuration `.yml` files in `saved_models`. 
 
