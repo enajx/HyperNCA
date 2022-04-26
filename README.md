@@ -42,7 +42,12 @@ python train_NCA.py --environment LunarLander-v2
 
  ```
 
- train_NCA.py [-h] [--environment  [...]] [--generations] [--popsize] [--print_every] [--x0_dist] [--sigma_init] [--threads] [--seed_type] [--NCA_steps] [--NCA_dimension] [--size_substrate] [--NCA_channels] [--reading_channel] [--update_net_channel_dims] [--living_threshold] [--policy_layers] [--NCA_bias] [--neighborhood] [--save_model | --no-save_model] [--random_seed | --no-random_seed] [--random_seed_env | --no-random_seed_env] [--normalise | --no-normalise] [--replace | --no-replace]  [--co_evolve_seed | --no-co_evolve_seed] [--plastic | --no-plastic]
+train_NCA.py [-h] [--environment  [...]] [--generations] [--popsize] [--print_every] [--x0_dist] 
+    [--sigma_init] [--threads] [--seed_type] [--NCA_steps] [--NCA_dimension] [--size_substrate]
+    [--NCA_channels] [--reading_channel] [--update_net_channel_dims] [--living_threshold] [--policy_layers]
+    [--NCA_bias] [--neighborhood] [--save_model | --no-save_model] [--random_seed | --no-random_seed] 
+    [--random_seed_env | --no-random_seed_env] [--normalise | --no-normalise] [--replace | --no-replace] 
+    [--co_evolve_seed | --no-co_evolve_seed] [--plastic | --no-plastic]
 
 arguments:
   
