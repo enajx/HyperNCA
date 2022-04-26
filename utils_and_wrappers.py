@@ -369,30 +369,25 @@ def dimensions_env(environment):
     """
     from gym.spaces import Discrete, Box
     
-    if 'MNIST' in environment and 'image' in environment:
-        return (28,28), 10, True
-    elif 'MNIST' in environment:
-        return 784, 10, False
+    env = gym.make(environment)    
+    if len(env.observation_space.shape) == 3:     # Pixel-based environment
+        pixel_env = True
+        input_dim = 32*32*3
+    elif len(env.observation_space.shape) == 1:   # State-based environment 
+        pixel_env = False
+        input_dim = env.observation_space.shape[0]
+    elif isinstance(env.observation_space, Discrete):
+        pixel_env = False
+        input_dim = env.observation_space.n
     else:
-        env = gym.make(environment)    
-        if len(env.observation_space.shape) == 3:     # Pixel-based environment
-            pixel_env = True
-            input_dim = 32*32*3
-        elif len(env.observation_space.shape) == 1:   # State-based environment 
-            pixel_env = False
-            input_dim = env.observation_space.shape[0]
-        elif isinstance(env.observation_space, Discrete):
-            pixel_env = False
-            input_dim = env.observation_space.n
-        else:
-            raise ValueError('Observation space not supported')
+        raise ValueError('Observation space not supported')
 
-        if isinstance(env.action_space, Box):
-            action_dim = env.action_space.shape[0]
-        elif isinstance(env.action_space, Discrete):
-            action_dim = env.action_space.n
-        else:
-            raise ValueError('Action space not supported')
-        
+    if isinstance(env.action_space, Box):
+        action_dim = env.action_space.shape[0]
+    elif isinstance(env.action_space, Discrete):
+        action_dim = env.action_space.n
+    else:
+        raise ValueError('Action space not supported')
+    
 
-        return input_dim, action_dim, pixel_env
+    return input_dim, action_dim, pixel_env
