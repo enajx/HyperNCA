@@ -5,11 +5,11 @@
  
 # HyperNCA: Growing Developmental Networks with Neural Cellular Automata
 
-[![Paper](https://img.shields.io/badge/paper-arxiv.?????-B31B1B.svg)](https://arxiv.org/abs/??????)
+[![Paper](https://img.shields.io/badge/paper-arxiv.2204.11674-B31B1B.svg)](https://arxiv.org/abs/2204.11674)
 
 </div>
  
-This reposistory contains the code to grow networks using our HyperNCA method on any [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [HyperNCA: Growing Developmental Networks  with Neural Cellular Automata, 2022](https://arxiv.org/abs/??????).
+This reposistory contains the code to grow networks using our HyperNCA method on any [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [HyperNCA: Growing Developmental Networks  with Neural Cellular Automata, 2022](https://arxiv.org/abs/2204.11674).
 Additionally, you can train any custom environment by [registering them.](https://github.com/openai/gym/wiki/Environments)
 <!-- 
 <p align="center">
@@ -116,5 +116,13 @@ If you use the code for academic or commecial use, please cite the associated pa
 
 ```bibtex
 
+@inproceedings{najarro2022hypernca,
+  title={HyperNCA: Growing Developmental Networks with Neural Cellular Automata},
+  author={Najarro, Elias and Sudhakaran, Shyam and Glanois, Claire and Risi, Sebastian},
+  doi = {10.48550/ARXIV.2204.11674},
+  url = {https://arxiv.org/abs/2204.11674},
+  booktitle={From Cells to Societies: Collective Learning across Scales},
+  year={2022}
+}
 
 ```   
