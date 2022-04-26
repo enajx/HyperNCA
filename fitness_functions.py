@@ -264,12 +264,11 @@ def fitnessRL(evolved_parameters, nca_config, render = False, debugging=False, v
 def evaluate(argv):
     parser = argparse.ArgumentParser()
     
-    # parser.add_argument('--id', type=str, default='1645447353', metavar='', help='Run id')   # lander 5 layers
+    parser.add_argument('--id', type=str, default='1645447353', metavar='', help='Run id')   # lander 5 layers
     # parser.add_argument('--id', type=str, default='1646940683', metavar='', help='Run id')   # lander single seed
     # parser.add_argument('--id', type=str, default='1645360631', metavar='', help='Run id')   # ant 3 layers
     # parser.add_argument('--id', type=str, default='1645605120', metavar='', help='Run id')   # ant 30 layers deep one
     # parser.add_argument('--id', type=str, default='1647084085', metavar='', help='Run id')   # ant single seed
-    parser.add_argument('--id', type=str, default='1644785913', metavar='', help='Run id')    # metamorphosis quadrupeds
     
     parser.add_argument('--render', type=bool, default=1)
     parser.add_argument('--visualise_weigths', type=bool, default=0) 
