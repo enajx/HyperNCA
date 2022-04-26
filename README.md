@@ -30,8 +30,8 @@ cd HyperNCA
 pip install -r requirements.txt
  ```   
  Next, use `train_NCA.py` to train an agent. You can train any state-vector based OpenAI Gym's or pyBullet environments:
+ 
  ```bash
-
 # train HyperNCA to solve the Lunar Lander:
 python train_NCA.py --environment LunarLander-v2
 
@@ -73,7 +73,7 @@ arguments:
 ```
 
 Once trained, use `fitness_functions.py --id <run_id>` to test the grown network, eg, to evaluate the reported model in the paper for the Lunar Lander:
- ```
+ ```python
 
 python fitness_functions.py --id 1645360631
 
