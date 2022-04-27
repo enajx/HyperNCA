@@ -79,13 +79,6 @@ python fitness_functions.py --id 1645360631
 
 ```
 
-When running on a headless server some environments will require a virtual display to run -eg. CarRacing-v0-, in this case run:
- ```bash
-
-xvfb-run -a -s "-screen 0 1400x900x24 +extension RANDR" -- python train_NCA.py --environment LunarLander-v2
-
-```
-
 
 ## Reproduce the paper's results and evaluate the reported models in the paper
 
