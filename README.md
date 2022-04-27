@@ -9,7 +9,7 @@
 
 </div>
  
-This reposistory contains the code to grow networks using our HyperNCA method on any [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [HyperNCA: Growing Developmental Networks  with Neural Cellular Automata, 2022](https://arxiv.org/abs/2204.11674).
+This reposistory contains the code to grow networks using our HyperNCA method on any state-vector based [Gym environment](https://github.com/openai/gym/wiki/Table-of-environments) or [pyBullet environment](https://github.com/bulletphysics/bullet3) as described in our paper [HyperNCA: Growing Developmental Networks  with Neural Cellular Automata, 2022](https://arxiv.org/abs/2204.11674).
 Additionally, you can train any custom environment by [registering them.](https://github.com/openai/gym/wiki/Environments)
 <!-- 
 <p align="center">
